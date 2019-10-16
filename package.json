@@ -1,0 +1,30 @@
+{
+  "name": "valid-form",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "author": "Argano Inc.",
+  "repository": "git@github.com:argano/valid-form.git",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "clean": "del-cli build",
+    "prepublish": "npm run clean && npm run build",
+    "test": "echo \"no test\"",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "yup": "^0.27.0"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.7",
+    "@types/yup": "^0.26.22",
+    "del-cli": "^2.0.0",
+    "typescript": "^3.5.3"
+  },
+  "typings": "build/index.d.ts"
+}
