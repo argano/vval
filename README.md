@@ -1,20 +1,20 @@
-# valid-form
+# vval
 
 Store and validate values for React
 
 ## Install
 
 ```
-$ npm install valid-form yup
+$ npm install vval
 ```
 
 ## Usage
 
 ```
-import ValidFrom from "valid-form";
+import Vval from "vval";
 import * as yup from "yup";
 
-<ValidForm
+<Vval
   schema={yup.object().shape({
     email: yup
       .string()
@@ -40,7 +40,7 @@ import * as yup from "yup";
 
 ## Contribution
 
-1. Fork it ( http://github.com/argano/valid-form )
+1. Fork it ( http://github.com/argano/vval )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)

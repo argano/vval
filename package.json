@@ -1,10 +1,10 @@
 {
-  "name": "valid-form",
+  "name": "vval",
   "version": "0.0.1",
   "description": "",
   "main": "build/index.js",
   "author": "Argano Inc.",
-  "repository": "git@github.com:argano/valid-form.git",
+  "repository": "git@github.com:argano/vval.git",
   "files": [
     "build"
   ],

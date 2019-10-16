@@ -13,21 +13,21 @@ export interface RenderParams<T> {
     setSubmitting: (submitting: boolean) => void;
 }
 
-export interface ValidFormState<T> {
+export interface VvalState<T> {
     values: T;
     errors: Errors<T>;
     submitting: boolean;
 }
 
-export interface ValidFormProps<T> {
+export interface VvalProps<T> {
     initialValues: T;
     schema?: yup.Schema<T>;
     render: (params: RenderParams<T>) => JSX.Element|JSX.Element[]|string|null;
     immediate?: boolean;
 }
 
-export default class ValidForm<T> extends React.Component<ValidFormProps<T>, ValidFormState<T>> {
-    constructor(props: ValidFormProps<T>) {
+export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>> {
+    constructor(props: VvalProps<T>) {
         super(props);
         this.state = {
             values: this.props.initialValues,
