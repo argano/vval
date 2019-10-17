@@ -4,6 +4,7 @@ import * as yup from "yup";
 export type Errors<T> = {[P in keyof T]?: string};
 
 export interface RenderParams<T> {
+    prevValues: T;
     values: T;
     errors: Errors<T>;
     setValue<P extends keyof T>(key: P, value: T[P]): void;
@@ -14,6 +15,7 @@ export interface RenderParams<T> {
 }
 
 export interface VvalState<T> {
+    prevValues: T;
     values: T;
     errors: Errors<T>;
     submitting: boolean;
@@ -30,6 +32,7 @@ export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>>
     constructor(props: VvalProps<T>) {
         super(props);
         this.state = {
+            prevValues: this.props.initialValues,
             values: this.props.initialValues,
             errors: {},
             submitting: false
@@ -37,6 +40,7 @@ export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>>
     }
     render() {
         return this.props.render({
+            prevValues: this.state.prevValues,
             values: this.state.values,
             errors: this.state.errors,
             submitting: this.state.submitting,
@@ -62,8 +66,9 @@ export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>>
     }
     private setValue<P extends keyof T>(key: P, value: T[P]): void {
         const values = this.state.values;
+        const prevValues = Object.assign({}, values);
         values[key] = value;
-        this.setState({values});
+        this.setState({prevValues, values});
         if (!this.props.schema) {
             return;
         }
