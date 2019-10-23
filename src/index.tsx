@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as yup from "yup";
 
-export type Errors<T> = {[P in keyof T]?: string};
+export type Errors<T> = {[P in keyof T]?: T[P] extends object ? {[key: string]: string} : string};
 
 export interface RenderParams<T> {
     prevValues: T;
@@ -26,6 +26,28 @@ export interface VvalProps<T> {
     schema?: yup.Schema<T>;
     render: (params: RenderParams<T>) => JSX.Element|JSX.Element[]|string|null;
     immediate?: boolean;
+}
+
+// a => ["a"]
+// a[0][1] => ["a", "0", "1"]
+function pathToArray(path: string): string[] {
+    const result: string[] = [];
+    let pos = 0;
+    for (let i = 0; i < path.length; i++) {
+        if (path[i] === "[") {
+            pos++;
+            continue;
+        }
+        if (path[i] === "]") {
+            pos++;
+            continue;
+        }
+        if (result[pos] === undefined) {
+            result[pos] = "";
+        }
+        result[pos] += path[i];
+    }
+    return result;
 }
 
 export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>> {
@@ -94,9 +116,17 @@ export default class Vval<T> extends React.Component<VvalProps<T>, VvalState<T>>
     private handleError(error: yup.ValidationError): Errors<T> {
         const errors = {} as Errors<T>;
         error.inner.forEach(err => {
-            const path = err.path as keyof T;
-            if (path && !errors[path]) {
-                errors[path] = err.message;
+            const path = err.path;
+            if (path) {
+                const pathArray = pathToArray(path);
+                if (pathArray.length === 1) {
+                    errors[pathArray[0]] = err.message;
+                } else {
+                    if (!errors[pathArray[0]]) {
+                        errors[pathArray[0]] = {};
+                    }
+                    errors[pathArray[0]][pathArray.slice(1).join(".")] = err.message
+                }
             }
         });
         return errors;
