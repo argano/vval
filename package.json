@@ -15,14 +15,14 @@
     "build": "tsc"
   },
   "peerDependencies": {
-    "react": "^16.9.0",
-    "yup": "^0.27.0"
+    "react": ">=16.9.0",
+    "yup": ">=0.27.0"
   },
   "devDependencies": {
     "@types/react": "^16.9.7",
     "@types/yup": "^0.26.22",
     "del-cli": "^2.0.0",
-    "typescript": "^3.5.3"
+    "typescript": "^5.1.6"
   },
   "typings": "build/index.d.ts"
 }
