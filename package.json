@@ -4,6 +4,7 @@
   "description": "",
   "main": "build/index.js",
   "author": "Argano Inc.",
+  "license": "MIT",
   "repository": "git@github.com:argano/vval.git",
   "files": [
     "build"
