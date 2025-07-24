@@ -16,11 +16,11 @@
     "build": "tsc"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
+    "react": ">=19.1.0",
     "yup": ">=0.27.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.7",
+    "@types/react": "^19.1.0",
     "@types/yup": "^0.26.22",
     "del-cli": "^2.0.0",
     "typescript": "^5.1.6"

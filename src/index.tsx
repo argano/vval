@@ -24,7 +24,7 @@ export interface VvalState<T> {
 export interface VvalProps<T> {
     initialValues: T;
     schema?: yup.ObjectSchema<{[K in keyof T]: any}>;
-    render: (params: RenderParams<T>) => JSX.Element|JSX.Element[]|string|null;
+    render: (params: RenderParams<T>) => React.ReactNode;
     immediate?: boolean;
 }
 
